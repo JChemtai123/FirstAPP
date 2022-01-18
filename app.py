@@ -8,16 +8,15 @@ import numpy as np
 #import seaborn as sns
 import os.path
 import datetime
-#import glob
+import glob
 import plotly.express as px
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output, State
 from plotly.subplots import make_subplots
 
-path2 = r'C:\Users\jackl\PycharmProjects\dashApp'  # use your path
+path2 = r'C:\Users\jackl\PycharmProjects\dashApp\county-rainfall-visualization'  # use your path
 mthly_files = glob.glob(path2 + "/*.csv")
-counties = [x[64:-4] for x in all_files]
-counties
+
 li = []
 for mthlyfile in mthly_files:
     mthly_df = pd.read_csv(mthlyfile.format(mthlyfile), index_col=None, header=0)
@@ -59,7 +58,7 @@ app.layout = html.Div(children=[
             #                       {'label': 'Nakuru', 'value': 'Nakuru- County'}
             #                      ],
             options=[
-                {'label': j, 'value': j} for j in counties
+                {'label': j, 'value': j} for j in frame['County'].unique()
             ],
             #
             value="Bomet-county",
