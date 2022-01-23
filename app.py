@@ -56,13 +56,17 @@ app.layout = html.Div(children=[
         html.Label('Select County'),
         dcc.Dropdown(
             id='input_county',
-            #             options= [{'label': 'Bomet', 'value': 'Bomet- County'},
-            #                       {'label':  'Bungoma', 'value': 'Bungoma- County'},
-            #                       {'label': 'Nakuru', 'value': 'Nakuru- County'}
-            #                      ],
-            options=[
-                {'label': j, 'value': j} for j in frame['County'].unique()
-            ],
+                        options= [{'label': 'Bomet-County', 'value': 'Bomet-County'},
+                                  {'label':  'Bungoma-County', 'value': 'Bungoma-County'},
+                                  {'label': 'Elgeyomarakwet-County', 'value': 'Elgeyomarakwet-County'},
+                                  {'label': 'Kericho- County', 'value': 'Kericho- County'},
+                                  {'label': 'Narok-County', 'value': 'Narok-County'},
+                                  {'label': 'Transnzoia-County', 'value': 'Transnzoia-County'},
+                                  {'label': 'Uasingishu-County', 'value': 'Uasingishu-County'}
+                                 ],
+            # options=[
+            #     {'label': j, 'value': j} for j in frame['County'].unique()
+            # ],
             #
             value="Bomet-County",
             multi=False
