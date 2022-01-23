@@ -3,16 +3,12 @@ import dash
 from dash import dcc
 from dash import html
 import pandas as pd
-import numpy as np
+
 #import matplotlib.pyplot as plt
 #import seaborn as sns
-import os.path
-import datetime
 import glob
 import plotly.express as px
-import plotly.graph_objects as go
-from dash.dependencies import Input, Output, State
-from plotly.subplots import make_subplots
+from dash.dependencies import Input, Output
 
 path2 = r'C:\Users\jackl\PycharmProjects\dashApp\county-rainfall-visualization'  # use your path
 mthly_files = glob.glob(path2 + "/*.csv")
@@ -112,5 +108,5 @@ def update_figure(selected_county, selected_year_value):
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=False, use_reloader=False)
 
