@@ -101,12 +101,12 @@ app.layout = html.Div(children=[
               [Input('input_county', 'value'),
                Input('input_year', 'value')])
 def update_figure(selected_county, selected_year_value):
-    df_plot = frame[frame['County'] == selected_county]
+    df_plot = frame[frame.County == selected_county]
 
     if 'All_Years' in selected_year_value:
         df_plot1 = df_plot.copy()
     else:
-        df_plot1 = df_plot[df_plot['Year'].isin(selected_year_value)]
+        df_plot1 = df_plot[df_plot.Year.isin(selected_year_value)]
 
     fig2 = px.bar(df_plot1, x=df_plot1.Year,
                   y=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],labels={
