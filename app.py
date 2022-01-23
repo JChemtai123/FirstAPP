@@ -14,6 +14,7 @@ path2 = r'C:\Users\jackl\PycharmProjects\dashApp\county-rainfall-visualization' 
 mthly_files = glob.glob(path2 + "/*.csv")
 mthly_df = pd.DataFrame()
 frame = pd.DataFrame()
+Years = []
 li = []
 for mthlyfile in mthly_files:
     mthly_df = pd.read_csv(mthlyfile.format(mthlyfile), index_col=None, header=0)
@@ -23,6 +24,7 @@ for mthlyfile in mthly_files:
     li.append(mthly_df)
 
     frame = pd.concat(li, axis=0, ignore_index=True)
+    Years = mthly_df['Year'].unique()
 
 
 
@@ -78,7 +80,7 @@ app.layout = html.Div(children=[
         dcc.Dropdown(
             id='input_year',
             options=[
-                {'label': i, 'value': i} for i in mthly_df['Year'].unique()
+                {'label': i, 'value': i} for i in Years
             ],
             value='All_Years',
             multi=True
