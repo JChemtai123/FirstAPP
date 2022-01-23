@@ -16,16 +16,23 @@ from plotly.subplots import make_subplots
 
 path2 = r'C:\Users\jackl\PycharmProjects\dashApp\county-rainfall-visualization'  # use your path
 mthly_files = glob.glob(path2 + "/*.csv")
-
+mthly_df = pd.DataFrame()
+frame = pd.DataFrame()
 li = []
 for mthlyfile in mthly_files:
     mthly_df = pd.read_csv(mthlyfile.format(mthlyfile), index_col=None, header=0)
     mthly_df.rename(columns={'Unnamed: 0': 'Year'}, inplace=True)
-    mthly_filename = mthlyfile[73:-4]
+    mthly_filename = mthlyfile[69:-4]
     mthly_df['County'] = mthly_filename
     li.append(mthly_df)
 
     frame = pd.concat(li, axis=0, ignore_index=True)
+
+
+
+
+
+
 
 # Initialise the app
 app = dash.Dash(__name__)
@@ -61,7 +68,7 @@ app.layout = html.Div(children=[
                 {'label': j, 'value': j} for j in frame['County'].unique()
             ],
             #
-            value="Bomet-county",
+            value="Bomet-County",
             multi=False
         ),
     ]),
@@ -96,7 +103,9 @@ def update_figure(selected_county, selected_year_value):
         df_plot1 = df_plot[df_plot['Year'].isin(selected_year_value)]
 
     fig2 = px.bar(df_plot1, x=df_plot1.Year,
-                  y=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                  y=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],labels={
+                     "value": "Rainfall(mm)",
+                     "variable": "Months"},
                   barmode="group", title=selected_county)
 
     return fig2
