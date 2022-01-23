@@ -80,7 +80,11 @@ app.layout = html.Div(children=[
         dcc.Dropdown(
             id='input_year',
             options=[
-                {'label': i, 'value': i} for i in Years
+                {'label': '1983', 'value': '1983'},
+                {'label': '1984', 'value': '1984'},
+                {'label': '1985', 'value': '1985'},
+                {'label': '1986', 'value': '1986'}
+
             ],
             value='All_Years',
             multi=True
