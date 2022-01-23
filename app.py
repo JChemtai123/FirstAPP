@@ -80,10 +80,11 @@ app.layout = html.Div(children=[
         dcc.Dropdown(
             id='input_year',
             options=[
-                {'label': '1983', 'value': '1983'},
-                {'label': '1984', 'value': '1984'},
-                {'label': '1985', 'value': '1985'},
-                {'label': '1986', 'value': '1986'}
+                {'label': i, 'value': i} for i in Years
+                # {'label': '1983', 'value': '1983'},
+                # {'label': '1984', 'value': '1984'},
+                # {'label': '1985', 'value': '1985'},
+                # {'label': '1986', 'value': '1986'}
 
             ],
             value='All_Years',
@@ -101,12 +102,12 @@ app.layout = html.Div(children=[
               [Input('input_county', 'value'),
                Input('input_year', 'value')])
 def update_figure(selected_county, selected_year_value):
-    df_plot = frame[frame.County == selected_county]
+    df_plot = frame[frame['County'] == selected_county]
 
     if 'All_Years' in selected_year_value:
         df_plot1 = df_plot.copy()
     else:
-        df_plot1 = df_plot[df_plot.Year.isin(selected_year_value)]
+        df_plot1 = df_plot[df_plot['Year'].isin(selected_year_value)]
 
     fig2 = px.bar(df_plot1, x=df_plot1.Year,
                   y=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],labels={
